@@ -1,0 +1,34 @@
+{
+  "name": "infini-scroll",
+  "version": "1.0.0",
+  "description": "Add infinite scrolling to your page",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "gulp watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elmstfreddie/infini-scroll.git"
+  },
+  "keywords": [
+    "infinite",
+    "scroll",
+    "javascript",
+    "nojquery"
+  ],
+  "author": "elmstfreddie",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/elmstfreddie/infini-scroll/issues"
+  },
+  "homepage": "https://github.com/elmstfreddie/infini-scroll#readme",
+  "dependencies": {
+
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^2.13.6",
+    "merge2": "^1.0.2"
+  }
+}

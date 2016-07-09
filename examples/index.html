@@ -1,0 +1,91 @@
+<html>
+
+<head>
+    <script src="../build/js/infini-scroll.js"></script>
+    <script>
+        var cache = {};
+
+        function randString(min, max) {
+            let thing = "";
+            let rand = Math.random() * max;
+
+            for (let i = 0; i < rand; i++) {
+                thing += "a";
+            }
+
+            return thing;
+        }
+
+        function newCard() {
+            let ele = document.createElement("div");
+            ele.className = "card";
+            let containerElement = document.querySelector(".container");
+
+            containerElement.appendChild(ele);
+
+            var currTimeout;
+
+            return {
+                element: ele,
+                loadData: (index) => {
+                    ele.innerHTML = index + ": ";
+                    
+                    clearTimeout(currTimeout);
+
+                    let p = new Promise((resolve, reject) => {
+                        if (cache[index]) {
+                            ele.innerHTML = cache[index].text;
+                            resolve();
+                        } else {
+                            currTimeout = setTimeout(() => {
+                                ele.innerHTML += randString(50, 500);
+                                cache[index] = {
+                                    text: ele.innerHTML
+                                }
+                                resolve();
+                            }, Math.random() * 2000);
+                        }
+                    });
+
+                    return p;
+                }
+            };
+        }
+
+        var init = () => {
+            let containerElement = document.querySelector(".container");
+            let thing = new InfiniScroll(newCard, containerElement);
+            thing.init();
+        }
+    </script>
+    <style>
+    body {
+        height: 2000px;
+    }
+    
+    .card {
+        padding: 1em;
+        margin: 20px;
+        color: white;
+        background-color: blue;
+        word-wrap: break-word;
+    }
+    
+    .container {
+        margin: 60px;
+        height: 400px;
+        width: 300px;
+        position: relative;
+        overflow-y: scroll;
+        background-color: white;
+        box-sizing: border-box;
+    }
+    </style>
+</head>
+
+<body onload="init()">
+    <div class="container">
+    </div>
+</body>
+
+</html>
